@@ -1,60 +1,98 @@
 <!DOCTYPE html>
-<html lang=""fr">
+<html lang="fr">
 <head>
-  <meta charset=""UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OUBLIETTE</title>title>
+  <title>OUBLIETTE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Special+Elite&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-</head>head>
-
+</head>
 <body>
 
-  <h1>OUBLIETTE</h1>h1>
-  <p class="sous-titre">Crée ton escape game. Enferme tes amis.</p>
+  <div class="lueur"></div>
 
-  <div class="boutons">
-    <button class=""bouton" onclick="allerCreer()">Créer un escape game</button>
-    <button class="bouton" onclick="allerJouer()">Jouer</button>button>
-  </div>div>
+  <header class="haut">
+    <a class="marque" href="index.html">Oubliette</a>
+    <span class="note">fait main, une salle après l'autre</span>
+  </header>
 
-  <div class="boite-code">
-    <p>Tu as un code de partie ?</p>p>
-    <input type="text" id="champCode" maxlength="4" placeholder="0000">
-    <br><br>
-    <button class="bouton" onclick="verifierCode()">Entrer</button>button>
-    <p class="message" id="message"></p>
-  </div>div>
+  <main>
+    <p class="surtitre">un jeu d'évasion à fabriquer soi-même</p>
+    <h1>OUBLIETTE</h1>
+    <p class="sous-titre">Crée ton escape game. Enferme tes amis.</p>
 
+    <div class="boutons">
+      <a class="bouton plein" href="creer.html">Créer un escape game</a>
+      <a class="bouton" href="jouer.html">Jouer</a>
+    </div>
+
+    <div class="boite-code" id="boite">
+      <span class="clou c1"></span>
+      <span class="clou c2"></span>
+      <span class="clou c3"></span>
+      <span class="clou c4"></span>
+      <p class="etiquette">Tu as un code de partie ?</p>
+      <input type="text" id="champCode" maxlength="4" placeholder="0000" autocomplete="off">
+      <button class="bouton petit" onclick="verifierCode()">Entrer</button>
+      <p class="message" id="message"></p>
+    </div>
+
+    <section class="etapes">
+      <div class="etape">
+        <span class="chiffre">I.</span>
+        <h3>Construis</h3>
+        <p>Des salles, des indices, des cadenas. Tu décides de tout.</p>
+      </div>
+      <div class="etape">
+        <span class="chiffre">II.</span>
+        <h3>Partage</h3>
+        <p>Ta partie reçoit un code à quatre chiffres. Envoie-le.</p>
+      </div>
+      <div class="etape">
+        <span class="chiffre">III.</span>
+        <h3>Regarde-les chercher</h3>
+        <p>Et surtout, ne donne pas la réponse.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Oubliette, bricolé à la main, une ligne à la fois.</p>
+  </footer>
+
+  <script src="commun.js"></script>
   <script>
-    // code de test, plus tard ce sera different pour chaque partie
-    var codeSecret = "1234";
-
-    function allerCreer() {
-      alert("L'éditeur n'existe pas encore. Bientôt !");
-    }
-
-    function allerJouer() {
-      alert("La liste des escape games n'existe pas encore. Bientôt !");
-    }
-
     function verifierCode() {
-      // on recupere ce que le joueur a tape
       var codeTape = document.getElementById("champCode").value;
       var zoneMessage = document.getElementById("message");
+      var boite = document.getElementById("boite");
+
+      boite.classList.remove("secoue");
 
       if (codeTape === "") {
         zoneMessage.textContent = "Entre un code d'abord.";
         zoneMessage.className = "message neutre";
-      } else if (codeTape === codeSecret) {
+      } else if (chargerParties()[codeTape]) {
         zoneMessage.textContent = "La porte s'ouvre...";
         zoneMessage.className = "message bon";
+        boite.classList.add("ouverte");
+        setTimeout(function() {
+          location.href = "partie.html?code=" + codeTape;
+        }, 900);
       } else {
-        zoneMessage.textContent = "Mauvais code.";
+        zoneMessage.textContent = "Aucune porte avec ce code.";
         zoneMessage.className = "message faux";
+        setTimeout(function() {
+          boite.classList.add("secoue");
+        }, 10);
       }
     }
 
-    // pour valider avec la touche Entree
+    document.getElementById("champCode").addEventListener("input", function() {
+      this.value = this.value.replace(/[0^-9]/g, "");
+    });
+
     document.getElementById("champCode").addEventListener("keydown", function(e) {
       if (e.key === "Enter") {
         verifierCode();
@@ -62,10 +100,5 @@
     });
   </script>
 
-</body>body>
+</body>
 </html>
-  </script></p></button></p>
-  </div></button>"
-  </div></p></h1>
-</body></title>"
-</head></html>"

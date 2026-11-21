@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OUBLIETTE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="lueur"></div>
+
+  <header class="haut">
+    <a class="marque" href="index.html">Oubliette</a>
+    <span class="note">bonne chance</span>
+  </header>
+
+  <main class="page">
+
+    <div id="ecranErreur" hidden>
+      <h2>Porte introuvable</h2>
+      <p class="texte-salle">Aucune partie ne correspond à ce code.</p>
+      <a class="bouton" href="index.html">Retour</a>
+    </div>
+
+    <div id="ecranIntro" hidden>
+      <p class="surtitre">code <span id="codeAffiche"></span></p>
+      <h2 id="titrePartie"></h2>
+      <p class="texte-salle" id="introPartie"></p>
+      <p class="infos" id="infosPartie"></p>
+      <div class=""ligne-boutons"">
+        <button class=""bouton plein" onclick="commencer()">Entrer</button>
+      </div>"
+    </div>
+
+    <div id="ecranSalle" hidden>
+      <div class="barre">
+        <span id="progression"></span>
+        <span class="chrono" id="chrono"></span>
+      </div>
+      <h2 id="nomSalle"></h2>
+      <p class="texte-salle" id="texteSalle"></p>
+      <p class="indice" id="indice" hidden></p>
+      <div class="reponse-ligne">
+        <input type="text" class="champ" id="reponse" placeholder="Ta réponse" autocomplete="off">
+        <button class="bouton plein" onclick="essayer()">Essayer</button>
+      </div>
+      <p class="message" id="retour"></p>
+      <button class="lien" id="boutonIndice" onclick="montrerIndice()">J'ai besoin d'un indice</button>
+    </div>
+
+    <div id="ecranFin" hidden>
+      <h2 id="titreFin"></h2>
+      <p class="texte-salle" id="texteFin"></p>
+      <div class="ligne-boutons">
+        <button class="bouton plein" onclick="location.reload()">Rejouer</button>
+        <a class="bouton" href="index.html">Accueil</a>
+      </div>
+    </div>
+
+  </main>
+
+  <script src="commun.js"></script>
+  <script src="partie.js"></script>
+
+</body>
+</html>

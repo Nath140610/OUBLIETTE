@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créer - OUBLIETTE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="lueur"></div>
+
+  <header class="haut">
+    <a class="marque" href="index.html">Oubliette</a>
+    <span class="note">l'atelier</span>
+  </header>
+
+  <main class="page">
+    <p class="surtitre">nouvelle partie</p>
+    <h2 id="titrePage">Construis ton oubliette</h2>
+
+    <label>Nom de l'escape game
+      <input type="text" class="champ" id="titre" placeholder="La maison du vieux Morel">
+    </label>
+
+    <label>Ce que lisent les joueurs avant d'entrer
+      <textarea class="champ" id="intro" rows="3" placeholder="La porte vient de claquer derrière vous..."></textarea>
+    </label>
+
+    <label>Temps limite en minutes (0 = pas de limite)
+      <input type="number" class="champ court" id="duree" min="0" value="30">
+    </label>
+
+    <div id="salles"></div>
+
+    <button type="button" class="bouton" onclick="ajouterSalle()">+ Ajouter une salle</button>
+
+    <div class="ligne-boutons">
+      <button type="button" class="bouton plein" onclick="enregistrer()">Enregistrer la partie</button>
+      <a class="bouton" href="jouer.html">Mes parties</a>
+    </div>
+
+    <p class="message faux" id="erreur"></p>
+
+    <div class="resultat" id="resultat" hidden>
+      <p>Ta partie est prête. Son code :</p>
+      <p class="gros-code" id="codeFinal"></p>
+      <div class="ligne-boutons">
+        <a class="bouton plein" id="lienTester" href="#">La tester</a>
+        <a class="bouton" href="jouer.html">Voir mes parties</a>
+      </div>
+    </div>
+  </main>
+
+  <template id="modeleSalle">
+    <div class="salle">
+      <div class="salle-haut">
+        <span class="salle-num"></span>
+        <button type="button" class="lien supprimer">retirer</button>
+      </div>
+      <label>Nom de la salle
+        <input type="text" class="champ s-nom" placeholder="La cave">
+      </label>
+      <label>Ce que voit le joueur (l'énigme)
+        <textarea class="champ s-texte" rows="4" placeholder="Un vieux cadenas à 3 chiffres. Sur le mur, quelqu'un a gratté..."></textarea>
+      </label>
+      <label>Indice (facultatif)
+        <input type="text" class="champ s-indice" placeholder="Compte les bougies.">
+      </label>
+      <label>Réponse qui ouvre la porte
+        <input type="text" class="champ s-reponse" placeholder="742">
+      </label>
+    </div>
+  </template>
+
+  <script src="commun.js"></script>
+  <script src="creer.js"></script>
+
+</body>
+</html>

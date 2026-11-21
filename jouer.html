@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mes parties - OUBLIETTE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=IM+Fell+English+SC&family=Special+Elite&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="lueur"></div>
+
+  <header class="haut">
+    <a class="marque" href="index.html">Oubliette</a>
+    <span class="note">les portes déjà construites</span>
+  </header>
+
+  <main class="page">
+    <p class="surtitre">mes parties</p>
+    <h2>Choisis une porte</h2>
+
+    <div id="liste"></div>
+
+    <p class="vide" id="vide" hidden>
+      Rien ici pour l'instant. <a href="creer.html">Construis ta première partie.</a>
+    </p>
+
+    <div class="ligne-boutons">
+      <a class="bouton plein" href="creer.html">Créer un escape game</a>
+    </div>
+  </main>
+
+  <script src="commun.js"></script>
+  <script>
+    function afficher() {
+      var parties = chargerParties();
+      var liste = document.getElementById("liste");
+      var codes = Object.keys(parties).sort(function(a, b) {
+        return parties[b].date - parties[a].date;
+      });
+
+      liste.innerHTML = "";
+      document.getElementById("vide").hidden = codes.length > 0;
+
+      codes.forEach(function(code) {
+        var p = parties[code];
+        var carte = document.createElement("div");
+        carte.className = "carte";
+
+        var gauche = document.createElement("div");
+        var titre = document.createElement("h3");
+        titre.textContent = p.titre;
+        var infos = document.createElement("p");
+        infos.className = "infos";
+        infos.textContent = "code " + code + " · " + p.salles.length + " salle(s)" + (p.duree > 0 ? " · " + p.duree + " min" : "");
+        gauche.appendChild(titre);
+        gauche.appendChild(infos);
+
+        var droite = document.createElement("div");
+        droite.className = "actions";
+
+        var jouer = document.createElement("a");
+        jouer.className = "bouton plein";
+        jouer.href = "partie.html?code=" + code;
+        jouer.textContent = "Jouer";
+
+        var modifier = document.createElement("a");
+        modifier.className = "bouton";
+        modifier.href = "creer.html?code=" + code;
+        modifier.textContent = "Modifier";
+
+        var suppr = document.createElement("button");
+        suppr.className = "lien";
+        suppr.textContent = "supprimer";
+        suppr.addEventListener("click", function() {
+          if (confirm("Supprimer « " + p.titre + " » ?")) {
+            var toutes = chargerParties();
+            delete toutes[code];
+            sauverParties(toutes);
+            afficher();
+          }
+        });
+
+        droite.appendChild(jouer);
+        droite.appendChild(modifier);
+        droite.appendChild(suppr);
+
+        carte.appendChild(gauche);
+        carte.appendChild(droite);
+        liste.appendChild(carte);
+      });
+    }
+
+    afficher();
+  </script>
+
+</body>
+</html>
