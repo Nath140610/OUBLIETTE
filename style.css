@@ -1,0 +1,95 @@
+body {
+  background-color: #0d0d10;
+  color: #e8e8e8;
+  font-family: Georgia, serif;
+  margin: 0;
+  padding: 40px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 64px;
+  letter-spacing: 8px;
+  margin-bottom: 0;
+  margin-top: 40px;
+}
+
+.sous-titre {
+  color: #8a8a8a;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+
+.bouton {
+  background-color: #1a1a20;
+  color: #e8e8e8;
+  border: 1px solid #44444f;
+  padding: 15px 30px;
+  font-size: 18px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.bouton:hover {
+  background-color: #2a2a35;
+  border-color: #66666f;
+}
+
+.boite-code {
+  margin-top: 60px;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 400px;
+  padding: 30px;
+  border: 1px solid #44444f;
+}
+
+input {
+  background-color: #0d0d10;
+  color: #e8e8e8;
+  border: 1px solid #44444f;
+  padding: 12px;
+  font-size: 20px;
+  text-align: center;
+  width: 150px;
+  letter-spacing: 4px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #8a8a8a;
+}
+
+.message {
+  margin-top: 20px;
+  font-size: 18px;
+  min-height: 25px;
+}
+
+.bon {
+  color: #7ec97e;
+}
+
+.faux {
+  color: #c97e7e;
+}
+
+.neutre {
+  color: #8a8a8a;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+    letter-spacing: 4px;
+  }
+
+  .bouton {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+  }
+}

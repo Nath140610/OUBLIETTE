@@ -4,128 +4,68 @@
   <meta charset=""UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OUBLIETTE</title>title>
-
-  <style>
-    /* ----- Le style de la page ----- */
-
-    body {
-      background-color: #0d0d10;
-      color: #e8e8e8;
-      font-family: Georgia, serif;
-      margin: 0;
-      padding: 40px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 64px;
-      letter-spacing: 8px;
-      margin-bottom: 0;
-    }
-
-    .sous-titre {
-      color: #8a8a8a;
-      font-size: 18px;
-      margin-top: 10px;
-      margin-bottom: 50px;
-    }
-
-    .bouton {
-      background-color: #1a1a20;
-      color: #e8e8e8;
-      border: 1px solid #44444f;
-      padding: 15px 30px;
-      font-size: 18px;
-      font-family: Georgia, serif;
-      cursor: pointer;
-      margin: 10px;
-    }
-
-    .bouton:hover {
-      background-color: #2a2a35;
-    }
-
-    .boite-code {
-      margin-top: 60px;
-      border: 1px solid #44444f;
-      padding: 30px;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    input {
-      background-color: #0d0d10;
-      color: #e8e8e8;
-      border: 1px solid #44444f;
-      padding: 12px;
-      font-size: 20px;
-      text-align: center;
-      width: 150px;
-      letter-spacing: 4px;
-    }
-
-    .message {
-      margin-top: 20px;
-      font-size: 18px;
-      min-height: 25px;
-    }
-  </style>
-</head>
+  <link rel="stylesheet" href="style.css">
+</head>head>
 
 <body>
 
   <h1>OUBLIETTE</h1>h1>
-  <p class="sous-titre">Cree ton escape game. Enferme tes amis.</p>p>
+  <p class="sous-titre">Crée ton escape game. Enferme tes amis.</p>
 
-  <button class="bouton" onclick="allerCreer()">Creer un escape game</button>button>
-  <button class="bouton" onclick="allerJouer()">Jouer</button>button>
+  <div class="boutons">
+    <button class=""bouton" onclick="allerCreer()">Créer un escape game</button>
+    <button class="bouton" onclick="allerJouer()">Jouer</button>button>
+  </div>div>
 
-  <!-- La boite pour entrer un code de partie -->
   <div class="boite-code">
     <p>Tu as un code de partie ?</p>p>
     <input type="text" id="champCode" maxlength="4" placeholder="0000">
     <br><br>
     <button class="bouton" onclick="verifierCode()">Entrer</button>button>
-    <p class="message" id="message"></p>p>
+    <p class="message" id="message"></p>
   </div>div>
 
   <script>
-    /* ----- Le code qui fait marcher la page ----- */
-
-    // Pour l'instant on met un faux code, juste pour tester
+    // code de test, plus tard ce sera different pour chaque partie
     var codeSecret = "1234";
 
     function allerCreer() {
-      alert("L'editeur n'existe pas encore. Bientot !");
+      alert("L'éditeur n'existe pas encore. Bientôt !");
     }
 
     function allerJouer() {
-      alert("La liste des escape games n'existe pas encore. Bientot !");
+      alert("La liste des escape games n'existe pas encore. Bientôt !");
     }
 
     function verifierCode() {
-      // On recupere ce que le joueur a tape
+      // on recupere ce que le joueur a tape
       var codeTape = document.getElementById("champCode").value;
       var zoneMessage = document.getElementById("message");
 
-      if (codeTape === codeSecret) {
-        zoneMessage.textContent = "La porte s'ouvre...";
-        zoneMessage.style.color = "#7ec97e";
-      } else if (codeTape === "") {
+      if (codeTape === "") {
         zoneMessage.textContent = "Entre un code d'abord.";
-        zoneMessage.style.color = "#8a8a8a";
+        zoneMessage.className = "message neutre";
+      } else if (codeTape === codeSecret) {
+        zoneMessage.textContent = "La porte s'ouvre...";
+        zoneMessage.className = "message bon";
       } else {
         zoneMessage.textContent = "Mauvais code.";
-        zoneMessage.style.color = "#c97e7e";
+        zoneMessage.className = "message faux";
       }
     }
+
+    // pour valider avec la touche Entree
+    document.getElementById("champCode").addEventListener("keydown", function(e) {
+      if (e.key === "Enter") {
+        verifierCode();
+      }
+    });
   </script>
 
-</body>
-</html>html>
+</body>body>
+</html>
   </script></p></button></p>
-  </div></button></p></h1>
-</body>
-  </style></title>"
+  </div></button>"
+  </div></p></h1>
+</body></title>"
 </head></html>"
